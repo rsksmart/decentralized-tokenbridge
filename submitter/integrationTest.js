@@ -5,7 +5,7 @@ const config = require('./config.js');
 const logConfig = require('./log-config.json');
 log4js.configure(logConfig);
 //Services
-const RskMMR = require('./src/services/rsk/RskMMR.js');
+//const RskMMR = require('./src/services/rsk/RskMMR.js');
 const RskCrossToEth = require('./src/services/rsk/RskCrossToEth.js');
 const RskCreateEvent = require('./src/services/rsk/RskCreateEvent.js');
 const MMRController = require('./src/lib/mmr/MMRController.js');
@@ -33,7 +33,7 @@ if(config.confirmations <= config.mmrBlockConfirmations) {
 }
 
 const mmrController = new MMRController(config, log4js.getLogger('MMR-CONTROLLER'));
-const rskMMR = new RskMMR(config, log4js.getLogger('RSK-MMR'), mmrController);
+//const rskMMR = new RskMMR(config, log4js.getLogger('RSK-MMR'), mmrController);
 const rskCrossToEth = new RskCrossToEth(config, log4js.getLogger('RSK-TO-ETH'), mmrController);
 const rskCreateEvent = new RskCreateEvent(config, log4js.getLogger('RSK-CREATE-EVENT'));
 
@@ -65,8 +65,8 @@ async function run() {
         logger.info('bridge create event');
         let isEventCreated = await rskCreateEvent.run();
 
-        logger.info('update MMR');
-        await rskMMR.run();
+        //logger.info('update MMR');
+        //await rskMMR.run();
 
         logger.info('cross the token');
         await rskCrossToEth.run(isEventCreated);

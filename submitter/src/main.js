@@ -27,7 +27,7 @@ if(config.confirmations <= config.mmrBlockConfirmations) {
 }
 
 const mmrController = new MMRController(config, log4js.getLogger('MMR-CONTROLLER'));
-const rskMMR = new RskMMR(config, log4js.getLogger('RSK-MMR'), mmrController);
+//const rskMMR = new RskMMR(config, log4js.getLogger('RSK-MMR'), mmrController);
 const rskCrossToEth = new RskCrossToEth(config, log4js.getLogger('RSK-TO-ETH'), mmrController);
 const rskCreateEvent = new RskCreateEvent(config, log4js.getLogger('RSK-CREATE-EVENT'));
 
@@ -42,7 +42,7 @@ scheduler.start()
 async function run() {
     try {
         let isEventCreated = await rskCreateEvent.run();
-        await rskMMR.run();
+        //await rskMMR.run();
         await rskCrossToEth.run(isEventCreated);
     } catch(err) {
         logger.error('Unhandled Error on run()', err);
@@ -52,7 +52,7 @@ async function run() {
 }
 
 async function exitHandler() {
-    await rskMMR.exitHandler();
+    //await rskMMR.exitHandler();
 
     process.exit();
 }
