@@ -15,7 +15,7 @@
     "mocha": "^6.2.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/pm2 start ./src/main.js --no-daemon",
+    "start": "./node_modules/.bin/pm2 start ./src/main.js --exp-backoff-restart-delay=30000",
     "dev": "node ./src/main.js",
     "test": "mocha --recursive \"test/**/*.test.js\" ",
     "mmrsync": "node --max-old-space-size=2048 ./src/mmrSync.js",
