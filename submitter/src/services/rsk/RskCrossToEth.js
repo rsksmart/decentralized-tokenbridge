@@ -28,6 +28,7 @@ module.exports = class RskCrossToEth {
         this.logger.debug(`Wait for ${numberOfBlocks} blocks`);
         await utils.waitBlocks(rskWeb3, numberOfBlocks);
       }
+      await this.mmrController.updateMMRTree();
       
       const currentBlock = await rskWeb3.eth.getBlockNumber();
       const toBlock = currentBlock - this.config.confirmations || 0;
@@ -169,6 +170,8 @@ module.exports = class RskCrossToEth {
         previousBlockNumber++;
         fs.writeFileSync(this.lastBlockPath, '0x' + previousBlockNumber.toString(16));
       }
+      await this.mmrController.updateMMRTree();
+      await this.mmrController.save();
       return true;
     } catch (err) {
         this.logger.error(new CustomError('Exception Crossing RSK Event', err));

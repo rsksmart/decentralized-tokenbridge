@@ -6,7 +6,7 @@ log4js.configure(logConfig);
 //Services
 const Scheduler = require('./services/Scheduler.js');
 const MMRController = require('./lib/mmr/MMRController.js');
-const RskMMR = require('./services/rsk/RskMMR.js');
+//const RskMMR = require('./services/rsk/RskMMR.js');
 const RskCrossToEth = require('./services/rsk/RskCrossToEth.js');
 const RskCreateEvent = require('./services/rsk/RskCreateEvent.js');
 
